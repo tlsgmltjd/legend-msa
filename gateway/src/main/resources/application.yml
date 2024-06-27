@@ -7,15 +7,18 @@ spring:
     name: gateway
   cloud:
     gateway:
-      routes:
-        - id: customer
-          predicates:
-            - Path=/customer/**
-          uri: lb://CUSTOMER
-        - id: coupon
-          predicates:
-            - Path=/coupon/**
-          uri: lb://COUPON
+      mvc:
+        routes:
+
+          - id: customer
+            uri: lb://CUSTOMER
+            predicates:
+              - Path=/customer/api
+
+          - id: coupon
+            uri: lb://COUPON
+            predicates:
+              - Path=/coupon/api
 
 logging:
   level:
